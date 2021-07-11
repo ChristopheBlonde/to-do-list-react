@@ -1,0 +1,90 @@
+/* Other rules */
+
+// global rules
+$orange: rgb(228, 126, 86);
+$back-text: rgb(250, 220, 208);
+$back-task: rgb(255, 247, 244);
+$font-body: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.body {
+  font-family: $font-body;
+  width: 80vw;
+  margin: 0 auto;
+  h1 {
+    font-size: 2.2em;
+  }
+  a,
+  b {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+/* Header */
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 2em 0 2em 0;
+  .icon-header {
+    font-size: 4em;
+    margin-right: 0.5em;
+    color: $orange;
+  }
+}
+
+/* Task */
+
+.writedTask {
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px $orange;
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: $back-task;
+  .icon-task {
+    color: $orange;
+    font-size: 1.2em;
+  }
+}
+
+/* Form */
+
+.task {
+  width: 75%;
+  margin: 0 auto;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  input {
+    outline: none;
+    width: 75%;
+    font-size: 1.4em;
+    margin-right: 2%;
+    background-color: $back-text;
+    padding: 0.4em;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px $orange;
+  }
+  button {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: $orange;
+    box-shadow: 2px 2px 2px $back-text;
+    font-size: 1.2em;
+    font-family: $font-body;
+  }
+}
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  padding: 2em;
+  background-color: $back-text;
+  border-radius: 10px;
+}
