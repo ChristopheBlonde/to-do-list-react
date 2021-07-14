@@ -1,30 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const Task = (props) => {
-  const { submit, setSubmit, setCheckBox } = props;
-
-  const handleCheckBox = (event) => {
-    const index = event.target.value;
+  const { submit, setSubmit } = props;
+  const token =
+    "iNC47naNC041BhR0ZW0xzCpDmwUiio1VwGPCmwI5GKBINEfVTNjMDMhciRGlTOtM";
+  const handleCheckBox = (index) => {
     const arrTaskChecked = [...submit];
-    if (!arrTaskChecked[index].checkBox) {
-      arrTaskChecked[index].checkBox = true;
-      setCheckBox(arrTaskChecked);
-    } else {
-      arrTaskChecked[index].checkBox = false;
-      setCheckBox(arrTaskChecked);
-    }
+    /* Change boolean for checked */
+    arrTaskChecked[index].checkBox = !arrTaskChecked[index].checkBox;
+    /* filter to down task checked */
+    arrTaskChecked.sort((x, y) =>
+      x.checkBox === y.checkBox ? 0 : x.checkBox ? 1 : -1
+    );
+    /* Send change in BDD */
+    console.log(arrTaskChecked[index]);
+    return setSubmit(arrTaskChecked);
   };
 
-  const handleDeleteTask = (event) => {
+  const handleDeleteTask = (index) => {
     const arr = [...submit];
-    const newArr = [];
-    arr.map((elem) => {
-      if (event.text !== elem.text) {
-        newArr.push(elem);
-      }
-      return newArr;
-    });
-    setSubmit(newArr);
+    /* Delete Task */
+    arr.splice(index, 1);
+    return setSubmit(arr);
   };
 
   return (
@@ -33,19 +31,18 @@ const Task = (props) => {
         return (
           <div key={index} className="writedTask">
             <input
-              value={index}
-              onChange={handleCheckBox}
+              checked={elem.checkBox}
+              onChange={() => handleCheckBox(index)}
               type="checkbox"
             ></input>
 
-            {!elem.checkBox ? (
+            {elem.checkBox ? (
               <p style={{ textDecorationLine: "line-through" }}>{elem.text}</p>
             ) : (
               <p>{elem.text}</p>
             )}
             <FontAwesomeIcon
-              value={index}
-              onClick={() => handleDeleteTask(submit[index])}
+              onClick={() => handleDeleteTask(index)}
               className="icon-task"
               icon="trash"
             />
