@@ -26,7 +26,7 @@ function App() {
   /* State to switch dark/light */
   const [modeColor, setModeColor] = useState(true);
   /* effect function to flech data */
-  const flechData = async () => {
+  const fetchData = async () => {
     const token =
       "iNC47naNC041BhR0ZW0xzCpDmwUiio1VwGPCmwI5GKBINEfVTNjMDMhciRGlTOtM";
     const res = await axios.get("http://localhost:5000/task", {
@@ -36,7 +36,7 @@ function App() {
   };
 
   useEffect(() => {
-    flechData();
+    fetchData();
   }, []);
 
   return (

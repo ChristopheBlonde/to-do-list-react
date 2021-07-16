@@ -3,7 +3,7 @@ import axios from "axios";
 const Form = (props) => {
   const { tasks, setTasks, taskInput, setTaskInput, checkBox } = props;
 
-  const handleTasks = (event) => {
+  const handleTasks = async (event) => {
     event.preventDefault();
     /* Add task on form tasks  */
     if (taskInput) {
@@ -13,11 +13,17 @@ const Form = (props) => {
       /* Send in BDD */
       const token =
         "iNC47naNC041BhR0ZW0xzCpDmwUiio1VwGPCmwI5GKBINEfVTNjMDMhciRGlTOtM";
-      axios.post("http://localhost:5000/task/add", text, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/task/add",
+        text,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      arrTask.pop();
+      arrTask.push(response.data);
       setTasks(arrTask);
       setTaskInput("");
     }
@@ -30,7 +36,7 @@ const Form = (props) => {
   };
 
   return (
-    <form ontasks={handleTasks} className="task">
+    <form onSubmit={handleTasks} className="task">
       <input
         value={taskInput}
         onChange={handleTaskInput}

@@ -14,9 +14,8 @@ const Task = (props) => {
       x.checkBox === y.checkBox ? 0 : x.checkBox ? 1 : -1
     );
     /* Send change in BDD */
-    console.log(arrTaskChecked[index].id);
     axios.put(
-      `http://localhost:5000/task/update/${arrTaskChecked[index].id}`,
+      `http://localhost:5000/task/update/${arrTaskChecked[index]._id}`,
       arrTaskChecked[index],
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -32,7 +31,7 @@ const Task = (props) => {
     const token =
       "iNC47naNC041BhR0ZW0xzCpDmwUiio1VwGPCmwI5GKBINEfVTNjMDMhciRGlTOtM";
     axios.delete(
-      `http://localhost:5000/task/delete/${arr[index].id}`,
+      `http://localhost:5000/task/delete/${arr[index]._id}`,
 
       {
         headers: { Authorization: `Bearer ${token}` },
