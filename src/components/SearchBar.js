@@ -3,7 +3,7 @@ import { useState } from "react";
 const SearchBar = (props) => {
   /* Destructuring props */
 
-  const { submit, setSubmit } = props;
+  const { tasks, setTasks } = props;
 
   /* State for search Task controled */
   const [search, setSearch] = useState("");
@@ -11,30 +11,30 @@ const SearchBar = (props) => {
   const handleSearch = (event) => {
     const value = event.target.value;
     const searchTask = [];
-    const oldSubmit = [...submit];
-    for (let i = 0; i < submit.length; i++) {
-      if (submit[i].text.indexOf(value) !== -1) {
-        searchTask.push(submit[i]);
+    const oldtasks = [...tasks];
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].text.indexOf(value) !== -1) {
+        searchTask.push(tasks[i]);
       }
     }
     setSearch(value);
-    return searchTask ? setSubmit(searchTask) : setSubmit(oldSubmit);
-    // const oldSubmit = [...submit];
+    return searchTask ? setTasks(searchTask) : setTasks(oldtasks);
+    // const oldtasks = [...tasks];
     // let check = false;
-    // if (submit) {
-    //   submit.map((elem) => {
+    // if (tasks) {
+    //   tasks.map((elem) => {
     //     if (elem.text.indexOf(value) !== -1) {
     //       searchTask.push(elem);
     //     }
     //   });
-    // for (let i = 0; i < submit.length; i++) {
+    // for (let i = 0; i < tasks.length; i++) {
     //   for (let j = 0; j < searchTask.length; j++) {
-    //     if (searchTask[j] === submit[i]) {
+    //     if (searchTask[j] === tasks[i]) {
     //       check = true;
     //     }
     //     if (j === searchTask.length - 1) {
     //       if (!check) {
-    //         searchTask.push(submit[i]);
+    //         searchTask.push(tasks[i]);
     //       } else {
     //         check = false;
     //       }
@@ -43,7 +43,7 @@ const SearchBar = (props) => {
     // }
     // }
     // setSearch(value);
-    // setSubmit(searchTask);
+    // setTasks(searchTask);
   };
 
   return (

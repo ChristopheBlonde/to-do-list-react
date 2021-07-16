@@ -2,11 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const Task = (props) => {
-  const { submit, setSubmit } = props;
+  const { tasks, setTasks } = props;
   const token =
     "iNC47naNC041BhR0ZW0xzCpDmwUiio1VwGPCmwI5GKBINEfVTNjMDMhciRGlTOtM";
   const handleCheckBox = (index) => {
-    const arrTaskChecked = [...submit];
+    const arrTaskChecked = [...tasks];
     /* Change boolean for checked */
     arrTaskChecked[index].checkBox = !arrTaskChecked[index].checkBox;
     /* filter to down task checked */
@@ -22,11 +22,11 @@ const Task = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    return setSubmit(arrTaskChecked);
+    setTasks(arrTaskChecked);
   };
 
   const handleDeleteTask = (index) => {
-    const arr = [...submit];
+    const arr = [...tasks];
     console.log(arr);
     /* Delete in BDD */
     const token =
@@ -41,12 +41,12 @@ const Task = (props) => {
     );
     /* Delete Task */
     arr.splice(index, 1);
-    return setSubmit(arr);
+    return setTasks(arr);
   };
 
   return (
     <section>
-      {submit.map((elem, index) => {
+      {tasks.map((elem, index) => {
         return (
           <div key={index} className="writedTask">
             <input

@@ -18,7 +18,7 @@ library.add(faListAlt, faTrash, faSun, faMoon);
 
 function App() {
   /* State to add Task */
-  const [submit, setSubmit] = useState([]);
+  const [tasks, setTasks] = useState([]);
   /* State to control input task */
   const [taskInput, setTaskInput] = useState("");
   /* State to control checked task */
@@ -32,7 +32,7 @@ function App() {
     const res = await axios.get("http://localhost:5000/task", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    setSubmit(res.data);
+    setTasks(res.data);
   };
 
   useEffect(() => {
@@ -43,18 +43,18 @@ function App() {
     <div className={modeColor ? "body" : "bodyDark"}>
       <div className="content">
         <Header modeColor={modeColor} setModeColor={setModeColor} />
-        <SearchBar submit={submit} setSubmit={setSubmit} />
+        <SearchBar tasks={tasks} setTasks={setTasks} />
         <Task
-          submit={submit}
-          setSubmit={setSubmit}
+          tasks={tasks}
+          setTasks={setTasks}
           setCheckBox={setCheckBox}
           checkBox={checkBox}
         />
         <Form
           taskInput={taskInput}
-          submit={submit}
+          tasks={tasks}
           checkBox={checkBox}
-          setSubmit={setSubmit}
+          setTasks={setTasks}
           setTaskInput={setTaskInput}
         />
         <Footer />
